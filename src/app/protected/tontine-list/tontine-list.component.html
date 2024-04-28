@@ -1,0 +1,19 @@
+<div class="content">
+
+  <div class="list">
+
+    <mat-list>
+      <div *ngFor="let type of types; index as i">
+        <div class="type">{{type.nom}}</div>
+
+        <mat-list-item *ngFor="let tontine of tontines[i]">
+          <app-tontine [tontine]="tontine"></app-tontine>
+        </mat-list-item>
+
+        <mat-divider></mat-divider>
+      </div>
+    </mat-list>
+
+  </div>
+
+</div>

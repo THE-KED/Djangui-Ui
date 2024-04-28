@@ -1,0 +1,100 @@
+<div class="content">
+    <div class="tab">
+    <span class="pan">
+<!--      <h4> {{cot.nom}}</h4>-->
+<!--      <h1>Seance {{cot.rang}}</h1>-->
+    </span>
+        <table mat-table [dataSource]="dataSource.slice()" class="mat-elevation-z8">
+
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="position">
+                <th mat-header-cell *matHeaderCellDef> No. </th>
+                <td mat-cell *matCellDef="let element,let i = index " > {{i+1}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Nom </th>
+                <td mat-cell *matCellDef="let element" > {{element.epargnant.membre.nom}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="montant">
+                <th mat-header-cell *matHeaderCellDef> Montant </th>
+                <td mat-cell *matCellDef="let element, index as i" >
+                    <span class="lab">{{element.montant}}</span>
+                </td>
+            </ng-container>
+            <!-- Weight Column -->
+            <ng-container matColumnDef="pret">
+                <th mat-header-cell *matHeaderCellDef> Montant + interet </th>
+                <td mat-cell *matCellDef="let element, index as i" >
+                    <span class="lab">{{getPretvalue(i)}}</span>
+                </td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="datePret">
+                <th mat-header-cell *matHeaderCellDef> Date pret </th>
+                <td mat-cell *matCellDef="let element" > {{element.datePret}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="rembourse">
+                <th mat-header-cell *matHeaderCellDef> Reste a Verser </th>
+                <td mat-cell *matCellDef="let element, index as i" > {{restes[i]}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="verser">
+                <th mat-header-cell *matHeaderCellDef> Deja verser </th>
+                <td mat-cell *matCellDef="let element, index as i">{{dejaVerse[i]}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef>Payer</th>
+                <td mat-cell *matCellDef="let element, index as i">
+                    <button mat-flat-button color="primary" *ngIf="isDone(i)"
+                            (click)="openDialogBox(300,100,element,i)"> Payer </button>
+
+                <h4 class="success" *ngIf="!isDone(i)">Paye le :{{lastVersementDate(i)|date:"yyyy-MM-dd"}}</h4>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+        <span class="pan">
+        <mat-grid-list [cols]="3" rowHeight="50px">
+            <mat-grid-tile-header title="INFORMATION"></mat-grid-tile-header>
+            <mat-grid-tile>
+<!--                <span> Bénéficiaire: {{cot.beneficiaire?.enregistrement?.membre?.nom}} </span>-->
+            </mat-grid-tile>
+            <mat-grid-tile>
+<!--                <span> Avalise: {{cot.beneficiaire?.avaliste?.membre?.nom}} </span>-->
+            </mat-grid-tile>
+<!--            <mat-grid-tile *ngIf="tontine?.type?.code==1">-->
+<!--                <span> Supplement : {{cot.supplement|money}} </span>-->
+<!--            </mat-grid-tile>-->
+            <mat-grid-tile>
+<!--                <span *ngIf="cot.complement!=null"> Complement: {{cot.complement|money}} </span>-->
+            </mat-grid-tile>
+            <mat-grid-tile>
+<!--                <span> Taux: {{cot.tauxTontine|money}} </span>-->
+            </mat-grid-tile>
+            <mat-grid-tile>
+<!--                <span> Taux Echec: {{cot.tauxEchec|money}} </span>-->
+            </mat-grid-tile>
+        </mat-grid-list>
+            <!--      <span class="inf">-->
+            <!--        <span> Avalise: {{cot.beneficiaire?.avaliste?.membre?.nom}} </span>-->
+            <!--        <span *ngIf="cot.complement!=null"> Complement: {{cot.complement|money}} </span><span *ngIf="cot.complement!=null"> Complement: {{cot.complement|money}} </span>-->
+            <!--      </span>-->
+            <!--      <span class="inf">-->
+            <!--        <span> Taux Echec: {{cot.tauxEchec|money}} </span>-->
+            <!--      </span>-->
+    </span>
+    </div>
+</div>
+

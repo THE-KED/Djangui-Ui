@@ -1,0 +1,61 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import 'node_modules/material-icons-font/sass/variables';
+@import 'node_modules/material-icons-font/sass/mixins';
+$MaterialIcons_FontPath: "~material-icons-font/fonts";
+@import 'node_modules/material-icons-font/sass/main';
+@import 'node_modules/material-icons-font/sass/Regular';
+html, body {
+//  height: 100%;
+//width: 100vw;
+margin-left:0;
+left: 0;}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body{
+  background-image: url(./assets/img/bg/bg2.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #f44336;
+}
+//*{
+//  top: 0;
+//  left: 0;
+//  box-sizing: border-box;
+//  padding: 0;
+//  margin: 0;
+//}
+.mat-drawer-transition .mat-drawer-backdrop{
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top:0;
+}
+
+.left mat-grid-tile-content{
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  background: burlywood;
+}

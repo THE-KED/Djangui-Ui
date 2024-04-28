@@ -1,0 +1,59 @@
+
+<div class="content">
+
+  <div class="list">
+
+
+
+    <form [formGroup]="Form" (ngSubmit)="creatEpargne()">
+
+      <mat-form-field appearance="outline">
+        <mat-select id="type"  required placeholder="Type" formControlName="type" [(ngModel)]="type">
+          <mat-option value=1>Banque Scolaire</mat-option>
+          <mat-option value=2>Emergance</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nom:</mat-label>
+        <input matInput id="intituler" type="text" placeholder="Intitulé:" formControlName="intituler" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Montant Minimum de depot</mat-label>
+        <input matInput id="tauxTontine" type="number" placeholder="Montant" formControlName="minDep" required>
+        <span matTextSuffix>Fcfa</span>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Plafond de pret :</mat-label>
+        <input matInput id="coefPret" type="number" formControlName="coefPret" required>
+        <span matTextPrefix>Capital X  </span>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" *ngIf="type && type==1">
+        <mat-label>delais de remboursement</mat-label>
+        <input matInput id="nbSeances" type="number" placeholder="nombre de seances" formControlName="delaisRemboursement" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Taux d'interet sur les prets</mat-label>
+        <input matInput id="frequence" type="number" placeholder="Interet pret" formControlName="tauxInteretPret" required>
+        <span matTextSuffix>%</span>
+      </mat-form-field>
+
+
+
+      <mat-form-field appearance="outline">
+        <mat-label>Date de cassation</mat-label>
+        <input matInput formControlName="dateCassation" [matDatepicker]="picker" required>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="!Form.valid">Créer</button>
+    </form>
+
+  </div>
+
+</div>

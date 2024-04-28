@@ -1,0 +1,16 @@
+<app-loader></app-loader>
+<div class content>
+  <span class="header-img" *ngIf="authService.isAuth">
+    <span class="user--wapper">
+      <label>{{authService.user}}</label>
+      <label>Role: {{authService.role.slice(5)}}</label>
+    </span>
+    <img src="./assets/img/1.png" alt="Djangui">
+  </span>
+  <router-outlet></router-outlet>
+  <div class="footer">
+    <span>© 2023 Copyright: Djangui</span>
+    <span>by MegaPlus</span>
+  </div>
+</div>
+

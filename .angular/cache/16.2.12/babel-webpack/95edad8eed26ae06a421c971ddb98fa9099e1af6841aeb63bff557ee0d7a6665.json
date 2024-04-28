@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class Depot {\n  constructor() {\n    this.id = null;\n    this.epargnant = null;\n    this.montant = null;\n    this.dateDepot = null;\n  }\n}","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}

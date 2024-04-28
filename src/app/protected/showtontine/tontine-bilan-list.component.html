@@ -1,0 +1,63 @@
+<div class="content">
+
+  <div class="list" >
+      <span class="pan">
+      <h4> Liste Des Tontines</h4>
+          <mat-tab-group animationDuration="750ms">
+            <mat-tab *ngFor="let type of types ; let j=index" label="Tontines {{type.nom}}">
+              <table mat-table [dataSource]="tontines[j].slice()" class="mat-elevation-z8">
+
+                <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+
+                                  <!-- Position Column -->
+                <ng-container matColumnDef="position">
+                  <th mat-header-cell *matHeaderCellDef> No. </th>
+                  <td mat-cell *matCellDef="let element,index as i " class="{{element.actif? 'actif' : 'inactif'}}"> {{i+1}} </td>
+                </ng-container>
+
+                                  <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef> Nom </th>
+                  <td mat-cell *matCellDef="let element" class="{{element.actif? 'actif' : 'inactif'}}"> {{element.nom}} </td>
+                </ng-container>
+
+                                  <!-- Weight Column -->
+                <ng-container matColumnDef="cotisation">
+                  <th mat-header-cell *matHeaderCellDef> Taux </th>
+                  <td mat-cell *matCellDef="let element" class="{{element.actif? 'actif' : 'inactif'}}">
+                    <span class="lab">{{element.tauxTontine}}</span>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="type">
+                  <th mat-header-cell *matHeaderCellDef> Type </th>
+                  <td mat-cell *matCellDef="let element" class="{{element.actif? 'actif' : 'inactif'}}">
+                    <span class="lab">{{element.type.nom}}</span>
+                  </td>
+                </ng-container>
+
+                                  <!-- Symbol Column -->
+                <ng-container matColumnDef="retard">
+                  <th mat-header-cell *matHeaderCellDef> </th>
+                  <td mat-cell *matCellDef="let element" class="{{element.actif? 'actif' : 'inactif'}}"> <button mat-flat-button color="warn" routerLink="/public/tontine/desc/{{element.id}}" (click)="SelectTontine(element)">Afficher</button> </td>
+                </ng-container>
+
+                <ng-container matColumnDef="echec">
+                  <th mat-header-cell *matHeaderCellDef> </th>
+                  <td mat-cell *matCellDef="let element" class="{{element.actif? 'actif' : 'inactif'}}"> <button *ngIf="element.actif && this.Roles.includes('BUREAU')" mat-stroked-button disabled="false" routerLink="/public/member/add/{{element.id}}" color="primary">Ajouter un Membre</button>
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+              </table>
+            </mat-tab>
+<!--            <mat-tab label="Tontines Simples">Content 2</mat-tab>-->
+          </mat-tab-group>
+
+
+    </span>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<form [formGroup]="form" (ngSubmit)="buyPret()">
+<div mat-dialog-content class="content">
+
+    Confirmer le Versement de Chez Mr
+
+        <mat-form-field appearance="outline">
+            <mat-label>Montant</mat-label>
+            <input matInput type="text" placeholder="Montant" formControlName="montant">
+        </mat-form-field>
+
+</div>
+<div mat-dialog-actions>
+    <button type="submit" mat-flat-button cdkFocusInitial  mat-button  class="Btn" color="primary">OUI</button>
+    <button mat-button mat-dialog-close color="accent" class="Btn">NON</button>
+</div>
+</form>

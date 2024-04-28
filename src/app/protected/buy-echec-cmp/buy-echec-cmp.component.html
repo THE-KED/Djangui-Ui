@@ -1,0 +1,81 @@
+<div class="content">
+  <div class="tab">
+    <span class="pan">
+      <h4> {{cot.nom}}</h4>
+      <h1>Seance {{cot.rang}}</h1>
+    </span>
+    <table mat-table [dataSource]="dataSource.slice()" class="mat-elevation-z8">
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element,let i = index " class="{{getclass(element.enregistrement.id)}}"> {{i+1}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Nom </th>
+        <td mat-cell *matCellDef="let element" class="{{getclass(element.enregistrement.id)}}"> {{element.enregistrement.membre.nom}} {{element.enregistrement.rang|enNumber}}</td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="cotisation">
+        <th mat-header-cell *matHeaderCellDef> Cotisation ({{cot.tauxTontine|money}})</th>
+        <td mat-cell *matCellDef="let element" class="{{getclass(element.enregistrement.id)}}">
+          <span class="lab">Non</span>
+        </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="retard">
+        <th mat-header-cell *matHeaderCellDef> Retard ({{cot.tauxEchec|money}}) </th>
+        <td mat-cell *matCellDef="let element" class="{{getclass(element.enregistrement.id)}}"> Non </td>
+      </ng-container>
+
+      <ng-container matColumnDef="echec">
+        <th mat-header-cell *matHeaderCellDef> Echec ({{cot.tauxEchec+cot.tauxTontine|money}}) </th>
+        <td mat-cell *matCellDef="let element" class="{{getclass(element.enregistrement.id)}}">
+          <button *ngIf="checkBuy(element)" mat-flat-button color="primary" (click)="openDialog('300ms','100ms',element)"> Payer </button>
+          <h4 class="success" *ngIf="!checkBuy(element)">Paye le :{{element.updatedAt|date:"yyyy-MM-dd"}}</h4>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+    <span class="pan">
+        <mat-grid-list [cols]="3" rowHeight="50px">
+            <mat-grid-tile-header title="INFORMATION"></mat-grid-tile-header>
+            <mat-grid-tile>
+                <span> Bénéficiaire: {{cot.beneficiaire?.enregistrement?.membre?.nom}} </span>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <span> Avalise: {{cot.beneficiaire?.avaliste?.membre?.nom}} </span>
+            </mat-grid-tile>
+            <mat-grid-tile *ngIf="tontine?.type?.code==1">
+                <span> Supplement : {{cot.supplement|money}} </span>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <span *ngIf="cot.complement!=null"> Complement: {{cot.complement|money}} </span>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <span> Taux: {{cot.tauxTontine|money}} </span>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <span> Taux Echec: {{cot.tauxEchec|money}} </span>
+            </mat-grid-tile>
+        </mat-grid-list>
+<!--      <span class="inf">-->
+<!--        <span> Avalise: {{cot.beneficiaire?.avaliste?.membre?.nom}} </span>-->
+<!--        <span *ngIf="cot.complement!=null"> Complement: {{cot.complement|money}} </span><span *ngIf="cot.complement!=null"> Complement: {{cot.complement|money}} </span>-->
+<!--      </span>-->
+<!--      <span class="inf">-->
+<!--        <span> Taux Echec: {{cot.tauxEchec|money}} </span>-->
+<!--      </span>-->
+    </span>
+  </div>
+</div>

@@ -1,0 +1,89 @@
+<div class="content">
+
+    <mat-card class="top--card">
+        <mat-card-header>
+            <mat-card-title>
+                <h2>{{enrg?.membre?.nom}} {{enrg?.rang}}</h2>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+            <div>
+                <mat-list role="list">
+                    <mat-list-item role="listitem">{{poste.nom}}</mat-list-item>
+                    <mat-list-item role="listitem">{{enrg?.membre?.sexe}}</mat-list-item>
+                    <mat-list-item role="listitem">{{enrg?.membre?.profession}}</mat-list-item>
+                </mat-list>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card class="top--card">
+        <mat-card-header>
+            <mat-card-title>
+                <h2>Mes Participations a la Tontine : "{{tontine.nom}}"</h2>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+            <table mat-table [dataSource]="dataSource" id="htmlData">
+
+                <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="position">
+                    <th mat-header-cell *matHeaderCellDef> Sceance. </th>
+                    <td mat-cell *matCellDef="let element, index as i" class="{{cssClass[3][i]}} {{cssClass[4][i]}}">
+                        <span class="mobile-label"> Sceance. :</span>
+<!--                        {{tontine.nom}}-->
+                        Sceance N.{{i+1}}
+
+                    </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="cotise">
+                    <th mat-header-cell *matHeaderCellDef> cotise </th>
+                    <td mat-cell *matCellDef="let element, index as i" class="{{cssClass[3][i]}} {{cssClass[4][i]}}">
+                        <span class="mobile-label {{cssClass[0][i]}}"> Cotiser :</span>
+                        <span class="{{cssClass[0][i]}}">{{element.tontine?"OUI":"NON"}}</span></td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="retard">
+                    <th mat-header-cell *matHeaderCellDef> Retard </th>
+                    <td mat-cell *matCellDef="let element, index as i" class="{{cssClass[3][i]}} {{cssClass[4][i]}}">
+                        <span class="mobile-label {{cssClass[1][i]}}"> Retard :</span>
+
+                        <span class="{{cssClass[1][i]}}">{{element.retard?"OUI":"NON"}}</span>
+                    </td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="echec">
+                    <th mat-header-cell *matHeaderCellDef> Echec</th>
+                    <td mat-cell *matCellDef="let element, index as i" class="{{cssClass[3][i]}} {{cssClass[4][i]}}">
+                        <span class="mobile-label {{cssClass[2][i]}}"> Echec :</span>
+                        <span class="{{cssClass[2][i]}}">{{element.echec?"OUI":"NON"}}</span>
+                    </td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="afficher">
+                    <th mat-header-cell *matHeaderCellDef> </th>
+                    <td mat-cell *matCellDef="let element, index as i" class="{{cssClass[3][i]}} {{cssClass[4][i]}}">
+                        <span class="mobile-label">
+                            <button mat-flat-button routerLink="/public/tontine/affiche/{{tontine.id}}/{{element.cotisation.id}}" (click)="selectCot(element.cotisation)">Afficher</button>
+                        </span>
+                        <span>
+                            <button mat-flat-button routerLink="/public/tontine/affiche/{{tontine.id}}/{{element.cotisation.id}}" (click)="selectCot(element.cotisation)">Afficher</button>
+                        </span>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </mat-card-content>
+    </mat-card>
+
+</div>

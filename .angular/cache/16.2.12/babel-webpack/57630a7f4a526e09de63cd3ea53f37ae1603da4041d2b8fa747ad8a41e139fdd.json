@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { HTTP_INTERCEPTORS } from \"@angular/common/http\";\nimport { httpErrorInterceptor } from \"./HttpErrorInterceptor\";\nexport const httpInterceptProviders = [{\n  provide: HTTP_INTERCEPTORS,\n  useClass: httpErrorInterceptor,\n  multi: true\n}];","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}

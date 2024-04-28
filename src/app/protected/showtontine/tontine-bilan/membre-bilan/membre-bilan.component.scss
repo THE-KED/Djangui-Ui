@@ -1,0 +1,111 @@
+@mixin glass-morph($type) {
+  @if $type == 1 {
+    background-color: rgba(217, 217, 217, 0.7);
+    backdrop-filter: blur(10px);
+    //color: #efefef;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 25px 35px #262626cc;
+
+  }
+  @if $type == 2 {
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    color: #464646;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 1%;
+    box-shadow: 0 25px 35px #262626cc;
+
+  }
+}
+.content{
+  height: 100%;
+  padding: 10vh 0;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.top--card{
+  width: 85% !important;
+  @include glass-morph(1);
+  margin: 20px 0;
+}
+table{
+  background: none;
+}
+.echec{
+  color: crimson;
+  font-weight: bolder;
+
+}
+.retard{
+  color: coral;
+  font-weight: bolder;
+}
+.tontine{
+  color: #17a2b8;
+  font-weight: bolder;
+}
+  .ben{
+    background-color: rgba(255, 223, 126, 0.75) !important;
+  }
+  .red{
+    background-color: rgba(255, 126, 141, 0.75) !important;
+  }
+
+@media(max-width: 600px) {
+
+  .tab {
+    width: 95%;
+  }
+
+  // Custom header label that shows in each column, with a set width and bold font
+  .mobile-label {
+    width: 80px !important;
+    display: inline-block;
+    font-weight: bold !important;
+    margin-right: 2em;
+  }
+
+  // Remove the header row altogether
+  .mat-mdc-header-row {
+    display: none;
+  }
+
+  // The row cells should display as a column, justified left, with a bit of extra padding
+  .mat-mdc-row {
+    width: 100%;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start;
+    padding: 8px 24px;
+    height: auto;
+    border-bottom: 1px solid #464646;
+  }
+  .mdc-data-table__cell{
+    display: flex;
+    flex-direction: row;
+    padding: 0.7em;
+    border: none;
+    width: 100%;
+
+  }
+
+  .pc--mat--grid--list{
+    display: none;
+  }
+  .mobile--mat--grid--list{
+    display: flex;
+  }
+}
+.mobile-label {
+  display: none;
+}
+.pc--mat--grid--list{
+  display: flex;
+}
+.mobile--mat--grid--list{
+  display: none;
+}
